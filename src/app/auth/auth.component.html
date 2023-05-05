@@ -1,33 +1,65 @@
 <div class="auth">
-  <form class="auth__form">
+  <form class="auth__form" [formGroup]="authForm" (submit)="authSubmit()">
     <div class="auth__form-group">
       <label class="auth__form-label">
         Логин
-        <input type="text" class="auth__form-input" />
+        <input
+          type="text"
+          formControlName="username"
+          class="auth__form-input"
+        />
       </label>
 
       <div class="auth__form-error">
-        <span>Логин не подходит под требования</span>
+        <span
+          *ngIf="
+            authForm.controls['username'].invalid &&
+            authForm.controls['username'].touched
+          "
+          >Логин не подходит под требования</span
+        >
       </div>
     </div>
 
     <div class="auth__form-group">
       <label class="auth__form-label">
         Пароль
-        <input type="text" class="auth__form-input" />
+        <input
+          type="text"
+          formControlName="password"
+          class="auth__form-input"
+        />
       </label>
 
       <div class="auth__form-error">
-        <span>Пароль не подходит под требования</span>
+        <span
+          *ngIf="
+            authForm.controls['password'].invalid &&
+            authForm.controls['password'].touched
+          "
+          >Пароль не подходит под требования</span
+        >
       </div>
     </div>
 
     <div class="auth__form-group">
-      <button class="auth__form-submit">Регистрация</button>
+      <button
+        class="auth__form-submit"
+        (click)="authType = 'register'"
+        [disabled]="authForm.invalid"
+      >
+        Регистрация
+      </button>
 
       <span>или</span>
 
-      <button class="auth__form-submit">Авторизация</button>
+      <button
+        class="auth__form-submit"
+        (click)="authType = 'login'"
+        [disabled]="authForm.invalid"
+      >
+        Авторизация
+      </button>
     </div>
   </form>
 </div>

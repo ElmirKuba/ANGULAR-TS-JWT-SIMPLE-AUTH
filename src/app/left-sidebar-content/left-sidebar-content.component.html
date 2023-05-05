@@ -1,7 +1,22 @@
 <div class="left-sidebar">
   <nav>
-    <a routerLink="auth" routerLinkActive="active">Авторизация</a>
-    <a routerLink="profile" routerLinkActive="active">Личный кабинет</a>
-    <a routerLink="#" routerLinkActive="active">Выход</a>
+    <a
+      routerLink="auth"
+      routerLinkActive="active"
+      *ngIf="profileService.getLoggedIn === false"
+      >Авторизация</a
+    >
+    <a
+      routerLink="profile"
+      routerLinkActive="active"
+      *ngIf="profileService.getLoggedIn === true"
+      >Личный кабинет</a
+    >
+    <a
+      (click)="profileService.userSignOut()"
+      routerLinkActive="active"
+      *ngIf="profileService.getLoggedIn === true"
+      >Выход</a
+    >
   </nav>
 </div>

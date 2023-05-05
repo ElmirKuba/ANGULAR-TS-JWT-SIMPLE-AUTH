@@ -1,3 +1,12 @@
 <div class="profile">
-  <div class="profile__hello">Привет, user!</div>
+  <div class="profile__hello" *ngIf="profileService.getLoggedIn">
+    Привет, {{ profileService.getAuthData.user.username }}!
+
+    <div class="profile__data">
+      <div>
+        Твои роли: {{ profileService.getAuthData.user.roles.join(", ") }}
+      </div>
+      <div>Твой ID в MongoDB: {{ profileService.getAuthData.user.id }}</div>
+    </div>
+  </div>
 </div>
