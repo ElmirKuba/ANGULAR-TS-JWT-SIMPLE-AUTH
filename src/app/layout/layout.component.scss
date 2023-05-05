@@ -1,0 +1,23 @@
+.layout-wrapper {
+  height: 100%;
+
+  display: flex;
+
+  &__left-side {
+    background: #ccc;
+    box-sizing: border-box;
+    width: 17%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__content {
+    background: #ddd;
+    box-sizing: border-box;
+    width: 83%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}

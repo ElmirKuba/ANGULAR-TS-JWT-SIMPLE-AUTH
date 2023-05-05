@@ -1,0 +1,10 @@
+.profile {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__hello {
+    font-size: xx-large;
+  }
+}
