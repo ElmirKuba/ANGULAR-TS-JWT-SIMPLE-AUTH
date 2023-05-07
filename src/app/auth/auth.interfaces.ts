@@ -6,7 +6,13 @@ export interface IAuthData {
 }
 
 export interface IAuthReturn {
-  error: boolean;
+  status: number;
+  ok: boolean;
+  error: {
+    error: string;
+    message: string;
+    statusCode: number;
+  };
   message: string;
   user: {
     id: string;

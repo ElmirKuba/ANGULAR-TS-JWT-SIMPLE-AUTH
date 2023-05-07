@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { IAuthData, IAuthType } from './auth.interfaces';
 import { HttpClient } from '@angular/common/http';
 import environment from 'src/environments/environment';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -16,13 +16,19 @@ export class AuthService {
         .post<T1>(`${environment.BASE_URL}/auth/register`, authData, {
           withCredentials: true,
         })
-        .pipe(map((data: T1) => data));
+        .pipe(
+          map((data: T1) => data),
+          catchError((err: any) => of(err))
+        );
     }
 
     return this.http
       .post<T1>(`${environment.BASE_URL}/auth/login`, authData, {
         withCredentials: true,
       })
-      .pipe(map((data: T1) => data));
+      .pipe(
+        map((data: T1) => data),
+        catchError((err: any) => of(err))
+      );
   }
 }

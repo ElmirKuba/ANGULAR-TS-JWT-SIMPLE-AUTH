@@ -8,5 +8,17 @@
       </div>
       <div>Твой ID в MongoDB: {{ profileService.getAuthData.user.id }}</div>
     </div>
+
+    <div class="profile__data">
+      <button (click)="getAllUsers()">Получить пользователей</button>
+
+      <div>
+        <h4>Все пользователи:</h4>
+        <span *ngFor="let user of allUsers; let index = index"
+          >{{ user.username }}
+          <span *ngIf="index + 1 !== allUsers.length">, </span>
+        </span>
+      </div>
+    </div>
   </div>
 </div>

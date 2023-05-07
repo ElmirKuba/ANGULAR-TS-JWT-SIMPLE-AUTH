@@ -39,6 +39,11 @@ export class AuthInterceptor implements HttpInterceptor {
             })
             .pipe(
               switchMap((response: IAuthReturn) => {
+                this.cookieService.set(
+                  'accessToken',
+                  response.tokens.accessToken
+                );
+
                 const tempRequest2 = request.clone({
                   setHeaders: {
                     Authorization: `Bearer ${this.cookieService.get(
